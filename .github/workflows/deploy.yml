@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
     - name: Checkout Repository
       uses: actions/checkout@v3
 
@@ -20,9 +21,9 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd ~/CrackDetectionWebApp
-          pkill -f app.py || true
+          cd ~/CrackDetectionWebApp_BACKUP
           git pull origin main
+          pkill -f app.py || true
           nohup python3 app.py > output.log 2>&1 &
 
     - name: Deploy to EC2-2
@@ -32,6 +33,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd ~/CrackDetectionWebApp_BACKUP
+          cd ~/CrackDetectionWebApp
+          git pull origin main
           pkill -f app.py || true
-          nohup python app.py > output.log 2>&1 &
+          nohup python3 app.py > output.log 2>&1 &
