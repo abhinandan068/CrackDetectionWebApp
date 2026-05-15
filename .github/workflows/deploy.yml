@@ -33,7 +33,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd ~/CrackDetectionWebApp
+          cd ~/CrackDetectionWebApp_BACKUP
           git pull origin main
           pkill -f app.py || true
           nohup python3 app.py > output.log 2>&1 &
