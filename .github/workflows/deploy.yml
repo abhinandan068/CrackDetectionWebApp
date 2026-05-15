@@ -23,7 +23,6 @@ jobs:
         script: |
           cd ~/CrackDetectionWebApp
           git pull origin main
-          pkill -f app.py || true
           nohup python3 app.py > output.log 2>&1 &
 
     - name: Deploy to EC2-2
@@ -35,5 +34,4 @@ jobs:
         script: |
           cd ~/CrackDetectionWebApp
           git pull origin main
-          pkill -f app.py || true
           nohup python3 app.py > output.log 2>&1 &
